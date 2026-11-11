@@ -1,0 +1,210 @@
+/* ===== Theme Variables ===== */
+:root {
+    --primary: #0b2d5b;     /* dark blue */
+    --accent: #ffb703;      /* gold */
+    --background: #f5f7fa;  /* light grey page background */
+    --text: #222222;        /* main text colour */
+    --white: #ffffff;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --radius: 10px;
+}
+
+/* ===== Base ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--background);
+    padding-top: 110px; /* space for fixed header */
+}
+
+section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+h2 {
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+/* ===== Navigation (fixed header) ===== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: var(--primary);
+    padding: 14px 20px;
+}
+
+header h1 {
+    color: var(--white);
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    color: var(--accent);
+}
+
+/* ===== Hero / Banner ===== */
+#home {
+    background: linear-gradient(135deg, var(--primary), #1d4e89);
+    color: var(--white);
+    text-align: center;
+    max-width: none;
+    padding: 100px 20px;
+}
+
+#home h2 {
+    color: var(--accent);
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+}
+
+#home p {
+    font-size: 1.15rem;
+    margin-bottom: 28px;
+}
+
+#home button {
+    background: var(--accent);
+    color: var(--primary);
+    border: none;
+    padding: 12px 26px;
+    margin: 6px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#home button:hover {
+    opacity: 0.85;
+}
+
+/* ===== About section cards ===== */
+#about ul {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px 20px 40px;
+    margin-bottom: 20px;
+}
+
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background: var(--primary);
+    color: var(--white);
+}
+
+tr:hover td {
+    background: #f0f6ff;
+}
+
+#matches table,
+#my-booking table {
+    display: block;
+    overflow-x: auto;
+}
+
+/* ===== Guidelines cards ===== */
+#guidelines > div {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+#guidelines > div h3 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+/* ===== Forms ===== */
+form {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 500px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
+form button {
+    width: 100%;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+/* ===== Booking summary ===== */
+#booking > div {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 24px;
+    max-width: 500px;
+}
+
+/* ===== Footer ===== */
+footer {
+    background: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+}
