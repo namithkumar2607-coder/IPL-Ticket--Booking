@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets - IPL 2026</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>IPL 2026 Ticket Booking</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#matches">Matches</a></li>
+                <li><a href="booking.html">Book Tickets</a></li>
+                <li><a href="index.html#my-booking">My Booking</a></li>
+                <li><a href="index.html#guidelines">Guidelines</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="booking-form">
+        <h2>Ticket Booking Form</h2>
+
+        <form action="#" method="post">
+
+            <label for="match">Match Selection:</label>
+            <select id="match" name="match" required>
+                <option value="">-- Select a match --</option>
+                <option value="CSK vs RCB">1. CSK vs RCB (Bengaluru)</option>
+                <option value="MI vs KKR">2. MI vs KKR (Mumbai)</option>
+                <option value="SRH vs RR">3. SRH vs RR (Hyderabad)</option>
+                <option value="GT vs DC">4. GT vs DC (Ahmedabad)</option>
+                <option value="PBKS vs LSG">5. PBKS vs LSG (Chandigarh)</option>
+            </select>
+            <br><br>
+
+            <label for="stand">Stand Category:</label>
+            <select id="stand" name="stand" required>
+                <option value="">-- Select a stand --</option>
+                <option value="General">General (Rs. 1,000)</option>
+                <option value="Premium">Premium (Rs. 2,500)</option>
+                <option value="VIP">VIP (Rs. 5,000)</option>
+            </select>
+            <br><br>
+
+            <label for="quantity">Number of Tickets (1 to 10):</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+            <br><br>
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" minlength="3" maxlength="50" required>
+            <br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" maxlength="80" required>
+            <br><br>
+
+            <label for="phone">Phone Number (10 digits):</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="Enter exactly 10 digits" required>
+            <br><br>
+
+            <fieldset>
+                <legend>Seating Preference:</legend>
+                <label><input type="radio" name="seating" value="Aisle" required> Aisle</label>
+                <label><input type="radio" name="seating" value="Window"> Window</label>
+                <label><input type="radio" name="seating" value="No preference"> No preference</label>
+            </fieldset>
+            <br>
+
+            <fieldset>
+                <legend>Additional Preferences:</legend>
+                <label><input type="checkbox" name="pref" value="Parking"> Parking required</label><br>
+                <label><input type="checkbox" name="pref" value="Newsletter"> Send me match updates by email</label>
+            </fieldset>
+            <br>
+
+            <button type="submit">Submit Booking</button>
+            <button type="reset">Reset</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 IPL Ticket Booking Website. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
