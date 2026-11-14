@@ -208,3 +208,37 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+/* ===== Toast notifications ===== */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 200;
+}
+
+.toast {
+    background: var(--primary);
+    color: var(--white);
+    padding: 14px 20px;
+    margin-top: 10px;
+    border-left: 5px solid var(--accent);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-error {
+    border-left-color: #d62828;
+}
+
+#booking {
+    scroll-margin-top: 110px;
+}
