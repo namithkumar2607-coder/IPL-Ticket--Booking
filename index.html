@@ -191,7 +191,7 @@
         <br><br>
 
         <label for="quantity">Number of Tickets:</label>
-        <input type="number" id="quantity" name="quantity" min="1">
+        <input type="number" id="quantity" name="quantity" min="1" value="1">
         <br><br>
 
         <label for="name">Name:</label>
@@ -210,14 +210,14 @@
     </form>
 
     <!-- Booking Summary -->
-    <div>
-        <h3>Booking Summary</h3>
-        <p>Selected Match: CSK vs RCB</p>
-        <p>Stand Category: General</p>
-        <p>Ticket Price: ₹1,000</p>
-        <p>Quantity: 1</p>
-        <p>Total Amount: ₹1,000</p>
-    </div>
+<div>
+    <h3>Booking Summary</h3>
+    <p>Selected Match: <span id="summary-match">-</span></p>
+    <p>Stand Category: <span id="summary-stand">-</span></p>
+    <p>Ticket Price: <span id="summary-price">-</span></p>
+    <p>Quantity: <span id="summary-qty">-</span></p>
+    <p><strong>Total Amount: <span id="summary-total">-</span></strong></p>
+</div>
 </section>
 <!-- My Ticket Bookings Section -->
 <section id="my-booking">

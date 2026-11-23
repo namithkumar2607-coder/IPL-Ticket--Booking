@@ -50,11 +50,62 @@ document.addEventListener("DOMContentLoaded", function () {
                             matchSelect.selectedIndex = i;
                             break;
                         }
-                    }
+                    }updateSummary(false);
                 }
             } else {
                 showToast("Scrolling to the booking form.", "success");
             }
         });
     });
+});
+
+/* ===== Live booking summary ===== */
+const ticketPrices = {
+    "CSK vs RCB":  { General: 1000, Premium: 2500, VIP: 5000 },
+    "MI vs KKR":   { General: 1200, Premium: 3000, VIP: 6000 },
+    "SRH vs RR":   { General: 900,  Premium: 2000, VIP: 4500 },
+    "GT vs DC":    { General: 1000, Premium: 2500, VIP: 5000 },
+    "PBKS vs LSG": { General: 800,  Premium: 2000, VIP: 4000 }
+};
+
+function updateSummary(announce) {
+    const matchEl = document.getElementById("match");
+    const standEl = document.getElementById("stand");
+    const qtyEl = document.getElementById("quantity");
+    if (!matchEl || !standEl || !qtyEl) {
+        return;
+    }
+
+    const match = matchEl.value;
+    const stand = standEl.value;
+    let qty = parseInt(qtyEl.value, 10);
+    if (isNaN(qty) || qty < 1) {
+        qty = 0;
+    }
+
+    const price = (ticketPrices[match] && ticketPrices[match][stand]) || 0;
+    const total = price * qty;
+
+    document.getElementById("summary-match").textContent = match;
+    document.getElementById("summary-stand").textContent = stand;
+    document.getElementById("summary-price").textContent = "₹" + price.toLocaleString("en-IN");
+    document.getElementById("summary-qty").textContent = qty;
+    document.getElementById("summary-total").textContent = "₹" + total.toLocaleString("en-IN");
+
+    if (announce) {
+        showToast("Summary updated. Total: ₹" + total.toLocaleString("en-IN"), "success", 2000);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    ["match", "stand", "quantity"].forEach(function (id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener("change", function () {
+                updateSummary(true);
+            });
+        }
+    });
+
+    updateSummary(false);
 });
