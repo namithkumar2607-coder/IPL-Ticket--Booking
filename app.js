@@ -24,42 +24,7 @@ function showToast(message, type = "success", duration = 3000) {
     }, duration);
 }
 
-/* ===== Smooth scroll from Book buttons to the booking form ===== */
-document.addEventListener("DOMContentLoaded", function () {
-    const bookLinks = document.querySelectorAll('a[href="#booking"]');
-
-    bookLinks.forEach(function (link) {
-        link.addEventListener("click", function (event) {
-            const target = document.getElementById("booking");
-            if (!target) {
-                return;
-            }
-
-            event.preventDefault();
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-
-            const row = link.closest("tr");
-            if (row) {
-                const teams = row.cells[1].textContent.trim();
-                showToast("Match selected: " + teams + ". Fill in the form to book.", "success");
-
-                const matchSelect = document.getElementById("match");
-                if (matchSelect) {
-                    for (let i = 0; i < matchSelect.options.length; i++) {
-                        if (matchSelect.options[i].text.indexOf(teams) !== -1) {
-                            matchSelect.selectedIndex = i;
-                            break;
-                        }
-                    }updateSummary(false);
-                }
-            } else {
-                showToast("Scrolling to the booking form.", "success");
-            }
-        });
-    });
-});
-
-/* ===== Live booking summary ===== */
+/* ===== Ticket prices and live summary ===== */
 const ticketPrices = {
     "CSK vs RCB":  { General: 1000, Premium: 2500, VIP: 5000 },
     "MI vs KKR":   { General: 1200, Premium: 3000, VIP: 6000 },
@@ -97,7 +62,23 @@ function updateSummary(announce) {
     }
 }
 
+function selectMatch(matchName) {
+    const matchSelect = document.getElementById("match");
+    if (!matchSelect) {
+        return;
+    }
+    for (let i = 0; i < matchSelect.options.length; i++) {
+        if (matchSelect.options[i].value === matchName) {
+            matchSelect.selectedIndex = i;
+            break;
+        }
+    }
+    updateSummary(false);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    /* ----- Live summary listeners ----- */
     ["match", "stand", "quantity"].forEach(function (id) {
         const element = document.getElementById(id);
         if (element) {
@@ -106,6 +87,88 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     });
-
     updateSummary(false);
+
+    /* ----- Book buttons: smooth scroll + preselect match ----- */
+    document.querySelectorAll('a[href="#booking"]').forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            const target = document.getElementById("booking");
+            if (!target) {
+                return;
+            }
+            event.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            const card = link.closest(".match-card");
+            if (card) {
+                selectMatch(card.dataset.match);
+                showToast("Match selected: " + card.dataset.match + ". Fill in the form to book.", "success");
+            } else {
+                showToast("Scrolling to the booking form.", "success");
+            }
+        });
+    });
+
+    /* ----- Team filter ----- */
+    const teamFilter = document.getElementById("team-filter");
+    const cards = document.querySelectorAll(".match-card");
+    const noMatches = document.getElementById("no-matches");
+
+    if (teamFilter) {
+        teamFilter.addEventListener("change", function () {
+            const team = teamFilter.value;
+            let visibleCount = 0;
+
+            cards.forEach(function (card) {
+                const teams = card.dataset.teams.split(" ");
+                const show = team === "all" || teams.indexOf(team) !== -1;
+                card.classList.toggle("hidden", !show);
+                if (show) {
+                    visibleCount++;
+                }
+            });
+
+            if (noMatches) {
+                noMatches.hidden = visibleCount > 0;
+            }
+            showToast("Showing " + visibleCount + " match(es).", "success", 1500);
+        });
+    }
+
+    /* ----- Grid / list view toggle ----- */
+    const container = document.getElementById("match-container");
+    const gridBtn = document.getElementById("grid-view-btn");
+    const listBtn = document.getElementById("list-view-btn");
+
+    if (container && gridBtn && listBtn) {
+        gridBtn.addEventListener("click", function () {
+            container.classList.remove("list-view");
+            gridBtn.classList.add("active");
+            listBtn.classList.remove("active");
+        });
+
+        listBtn.addEventListener("click", function () {
+            container.classList.add("list-view");
+            listBtn.classList.add("active");
+            gridBtn.classList.remove("active");
+        });
+    }
+
+    /* ----- Hamburger menu ----- */
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
 });

@@ -21,7 +21,7 @@ body {
     line-height: 1.6;
     color: var(--text);
     background: var(--background);
-    padding-top: 110px; /* space for fixed header */
+    padding-top: 70px; /* space for fixed header */
 }
 
 section {
@@ -43,13 +43,16 @@ header {
     width: 100%;
     z-index: 100;
     background: var(--primary);
-    padding: 14px 20px;
+    padding: 12px 20px;
+    display: flex;                    /* Flexbox: logo left, nav right */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 header h1 {
     color: var(--white);
     font-size: 1.3rem;
-    margin-bottom: 8px;
 }
 
 header nav ul {
@@ -67,6 +70,17 @@ header nav a {
 
 header nav a:hover {
     color: var(--accent);
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    border-radius: 6px;
+    font-size: 1.4rem;
+    padding: 2px 12px;
+    cursor: pointer;
 }
 
 /* ===== Hero / Banner ===== */
@@ -147,18 +161,7 @@ tr:hover td {
 }
 
 /* ===== Guidelines cards ===== */
-#guidelines > div {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 20px 24px;
-    margin-bottom: 20px;
-}
 
-#guidelines > div h3 {
-    color: var(--primary);
-    margin-bottom: 8px;
-}
 
 /* ===== Forms ===== */
 form {
@@ -240,5 +243,167 @@ footer {
 }
 
 #booking {
-    scroll-margin-top: 110px;
+    scroll-margin-top: 80px;
+}
+/* ===== Filter bar and view toggle ===== */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-bar select {
+    width: auto;
+    min-width: 200px;
+    margin-top: 0;
+}
+
+.view-toggle button {
+    background: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.view-toggle button.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* ===== Match cards (CSS Grid) ===== */
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.match-grid.list-view {
+    grid-template-columns: 1fr;
+}
+
+.match-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    border-top: 4px solid var(--accent);
+}
+
+.match-card.hidden {
+    display: none;
+}
+
+.match-card h3 {
+    color: var(--primary);
+    margin: 6px 0;
+}
+
+.match-no {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #777;
+}
+
+.prices {
+    font-size: 0.9rem;
+    margin: 8px 0 12px;
+}
+
+.match-card button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.match-card button:hover {
+    background: #1d4e89;
+}
+
+.match-grid.list-view .match-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* ===== Guidelines (3-column grid) ===== */
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.guidelines-grid > div {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+}
+
+.guidelines-grid h3 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+/* ===== Media queries ===== */
+@media (max-width: 992px) {
+    .match-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 64px;
+    }
+
+    .match-grid,
+    .guidelines-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        width: 100%;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        margin-top: 10px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    #home h2 {
+        font-size: 1.8rem;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }

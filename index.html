@@ -12,12 +12,12 @@
 ```
 <!-- Navigation Bar -->
 <header>
-    <h1>Welcome to IPL 2026 Ticket Booking</h1>
-
+    <h1>IPL 2026 Tickets</h1>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
     <nav>
-        <ul>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#matches">Matches</a></li>
-            <li><a href="booking.html">Book Tickets</a></li>.
+            <li><a href="booking.html">Book Tickets</a></li>
             <li><a href="#my-booking">My Booking</a></li>
             <li><a href="#guidelines">Guidelines</a></li>
         </ul>
@@ -75,97 +75,77 @@
 <section id="matches">
     <h2>IPL 2026 Match Schedule</h2>
 
-    <table border="1">
-        <tr>
-            <th>Match Number</th>
-            <th>Teams</th>
-            <th>Date & Time</th>
-            <th>Venue</th>
-            <th>General Ticket</th>
-            <th>Premium Ticket</th>
-            <th>VIP Ticket</th>
-            <th>Action</th>
-        </tr>
+    <div class="filter-bar">
+        <div>
+            <label for="team-filter">Filter by Team:</label>
+            <select id="team-filter">
+                <option value="all">All Teams</option>
+                <option value="CSK">Chennai Super Kings</option>
+                <option value="MI">Mumbai Indians</option>
+                <option value="RCB">Royal Challengers Bengaluru</option>
+                <option value="KKR">Kolkata Knight Riders</option>
+                <option value="SRH">Sunrisers Hyderabad</option>
+                <option value="RR">Rajasthan Royals</option>
+                <option value="GT">Gujarat Titans</option>
+                <option value="DC">Delhi Capitals</option>
+                <option value="PBKS">Punjab Kings</option>
+                <option value="LSG">Lucknow Super Giants</option>
+            </select>
+        </div>
+        <div class="view-toggle">
+            <button type="button" id="grid-view-btn" class="active">Grid View</button>
+            <button type="button" id="list-view-btn">List View</button>
+        </div>
+    </div>
 
-        <tr>
-            <td>1</td>
-            <td>CSK vs RCB</td>
-            <td>28 March 2026, 7:30 PM</td>
-            <td>Bengaluru</td>
-            <td>₹1,000</td>
-            <td>₹2,500</td>
-            <td>₹5,000</td>
-            <td><a href="#booking"><button>Book</button></a></td>
-        </tr>
+    <div class="match-grid" id="match-container">
+        <article class="match-card" data-teams="CSK RCB" data-match="CSK vs RCB">
+            <span class="match-no">Match 1</span>
+            <h3>CSK vs RCB</h3>
+            <p>28 March 2026, 7:30 PM</p>
+            <p>Bengaluru</p>
+            <p class="prices">General ₹1,000 | Premium ₹2,500 | VIP ₹5,000</p>
+            <a href="#booking"><button type="button">Book</button></a>
+        </article>
 
-        <tr>
-            <td>2</td>
-            <td>MI vs KKR</td>
-            <td>29 March 2026, 7:30 PM</td>
-            <td>Mumbai</td>
-            <td>₹1,200</td>
-            <td>₹3,000</td>
-            <td>₹6,000</td>
-            <td><a href="#booking"><button>Book</button></a></td>
-        </tr>
+        <article class="match-card" data-teams="MI KKR" data-match="MI vs KKR">
+            <span class="match-no">Match 2</span>
+            <h3>MI vs KKR</h3>
+            <p>29 March 2026, 7:30 PM</p>
+            <p>Mumbai</p>
+            <p class="prices">General ₹1,200 | Premium ₹3,000 | VIP ₹6,000</p>
+            <a href="#booking"><button type="button">Book</button></a>
+        </article>
 
-        <tr>
-            <td>3</td>
-            <td>SRH vs RR</td>
-            <td>30 March 2026, 7:30 PM</td>
-            <td>Hyderabad</td>
-            <td>₹900</td>
-            <td>₹2,000</td>
-            <td>₹4,500</td>
-            <td><a href="#booking"><button>Book</button></a></td>
-        </tr>
+        <article class="match-card" data-teams="SRH RR" data-match="SRH vs RR">
+            <span class="match-no">Match 3</span>
+            <h3>SRH vs RR</h3>
+            <p>30 March 2026, 7:30 PM</p>
+            <p>Hyderabad</p>
+            <p class="prices">General ₹900 | Premium ₹2,000 | VIP ₹4,500</p>
+            <a href="#booking"><button type="button">Book</button></a>
+        </article>
 
-        <tr>
-            <td>4</td>
-            <td>GT vs DC</td>
-            <td>31 March 2026, 7:30 PM</td>
-            <td>Ahmedabad</td>
-            <td>₹1,000</td>
-            <td>₹2,500</td>
-            <td>₹5,000</td>
-            <td><a href="#booking"><button>Book</button></a></td>
-        </tr>
+        <article class="match-card" data-teams="GT DC" data-match="GT vs DC">
+            <span class="match-no">Match 4</span>
+            <h3>GT vs DC</h3>
+            <p>31 March 2026, 7:30 PM</p>
+            <p>Ahmedabad</p>
+            <p class="prices">General ₹1,000 | Premium ₹2,500 | VIP ₹5,000</p>
+            <a href="#booking"><button type="button">Book</button></a>
+        </article>
 
-        <tr>
-            <td>5</td>
-            <td>PBKS vs LSG</td>
-            <td>1 April 2026, 7:30 PM</td>
-            <td>Chandigarh</td>
-            <td>₹800</td>
-            <td>₹2,000</td>
-            <td>₹4,000</td>
-            <td><a href="#booking"><button>Book</button></a></td>
-        </tr>
-    </table>
-</section>
-<!-- Team Filter Section -->
-<section>
-    <h2>Filter Matches by Team</h2>
+        <article class="match-card" data-teams="PBKS LSG" data-match="PBKS vs LSG">
+            <span class="match-no">Match 5</span>
+            <h3>PBKS vs LSG</h3>
+            <p>1 April 2026, 7:30 PM</p>
+            <p>Chandigarh</p>
+            <p class="prices">General ₹800 | Premium ₹2,000 | VIP ₹4,000</p>
+            <a href="#booking"><button type="button">Book</button></a>
+        </article>
+    </div>
 
-    <label for="team-filter">Select Team:</label>
-    <select id="team-filter">
-        <option value="all">All Teams</option>
-        <option value="CSK">Chennai Super Kings</option>
-        <option value="MI">Mumbai Indians</option>
-        <option value="RCB">Royal Challengers Bengaluru</option>
-        <option value="KKR">Kolkata Knight Riders</option>
-        <option value="SRH">Sunrisers Hyderabad</option>
-        <option value="RR">Rajasthan Royals</option>
-    </select>
-
-    <h3>Book Your Tickets</h3>
-    <p>Choose a match from the schedule and click the Book button.</p>
-
-    <a href="#booking"><button>Book Match 1</button></a>
-    <a href="#booking"><button>Book Match 2</button></a>
-    <a href="#booking"><button>Book Match 3</button></a>
-    <a href="#booking"><button>Book Match 4</button></a>
-    <a href="#booking"><button>Book Match 5</button></a>
+    <p id="no-matches" hidden>No matches found for this team.</p>
 </section>
 <!-- Ticket Booking Section -->
 <section id="booking">
@@ -241,29 +221,19 @@
 <!-- Guidelines Section -->
 <section id="guidelines">
     <h2>Ticket Booking Guidelines</h2>
-
-    <div>
-        <h3>1. Ticket Verification</h3>
-        <p>
-            Carry your valid match ticket.
-            Tickets will be checked at the stadium entrance.
-        </p>
-    </div>
-
-    <div>
-        <h3>2. ID Proof Requirement</h3>
-        <p>
-            Carry a valid government-issued photo ID
-            for verification at the stadium.
-        </p>
-    </div>
-
-    <div>
-        <h3>3. Prohibited Items</h3>
-        <p>
-            Outside food, beverages, fireworks and
-            restricted items are not allowed inside the stadium.
-        </p>
+    <div class="guidelines-grid">
+        <div>
+            <h3>1. Ticket Verification</h3>
+            <p>Carry your valid match ticket. Tickets will be checked at the stadium entrance.</p>
+        </div>
+        <div>
+            <h3>2. ID Proof Requirement</h3>
+            <p>Carry a valid government-issued photo ID for verification at the stadium.</p>
+        </div>
+        <div>
+            <h3>3. Prohibited Items</h3>
+            <p>Outside food, beverages, fireworks and restricted items are not allowed inside the stadium.</p>
+        </div>
     </div>
 </section>
 <!-- Footer Section -->
